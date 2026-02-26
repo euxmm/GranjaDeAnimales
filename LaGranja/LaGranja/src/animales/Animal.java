@@ -59,11 +59,18 @@ public abstract class Animal {
             this.peso = peso;
         }
     }
-    
+    /** 
+     * Obtiene el código identificativo del animal
+     * @return Strin con el código del animal
+     */
     public String getCodigo() {
         return codigo;
     }
-
+    /**
+     * Modifica el código del animal, el código debe ser 5 caracteress alfanuméricos
+     * @param codigo nuevo código que cumple las restricciones
+     * @throws IllegalArgumentException si no cumple con las restricciones
+     */
     public void setCodigo(String codigo) {
         if (!codigo.matches("[0-9a-z]{5}")) {
             throw new IllegalArgumentException();
@@ -71,11 +78,21 @@ public abstract class Animal {
             this.codigo = codigo;
         }
     }
-
+    
+    /** 
+     * Obtiene la fecha de nacimiento del animal
+     * @return devuelve fechaNacimiento en el formato establecido
+     */
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
+    /** 
+     * Establece la fecha de nacimiento del animal cumpliendo con un formato 
+     * específico. Si no lo cumple lanza IllegalArgumentException
+     * @param fechaNacimiento 
+     * @throws IllegalArgumentException 
+     */
     public void setFechaNacimiento(String fechaNacimiento) {
         LocalDate fecha;
 
@@ -88,10 +105,19 @@ public abstract class Animal {
         this.fechaNacimiento = fecha;
     }
 
+    /**
+     * Devuelve un caracter que indica el sexo del animal 'M' o 'H'
+     * @return sexo
+     */
     public char getSexo() {
         return sexo;
     }
 
+    /** 
+     * Establece el sexo del animal, solo puede ser 'M' para hembra y 'H' para macho
+     * @param sexo un caracter estableciendo el sexo del animal
+     * @throws IllegalArgumentException si no es alguna de las dos letras
+     */
     public void setSexo(char sexo) {
         if ((sexo != 'M' && sexo != 'H')) {
             throw new IllegalArgumentException();
@@ -99,11 +125,18 @@ public abstract class Animal {
             this.sexo = sexo;
         }
     }
-
+    /**
+     * Devuelve el peso del animal
+     * @return peso, un decimal que indica el peso
+     */
     public double getPeso() {
         return peso;
     }
 
+    /**
+     * Establece el peso del animal impidiendo que el peso sea menor que cero
+     * @param peso 
+     */
     public void setPeso(double peso) {
         if (peso <= 0) {
             throw new IllegalArgumentException();
@@ -111,7 +144,12 @@ public abstract class Animal {
             this.peso = peso;
         }
     }
-
+    /**
+     * Devuelve un codigo hash que identifica al animal.
+     * Se calcula con los atributos del animal para que si hay dos animales
+     * iguales tengan el mismo hash
+     * @return codigo hash propio del animal
+     */
     @Override
     public int hashCode() {
         int hash = 3;
@@ -122,6 +160,11 @@ public abstract class Animal {
         return hash;
     }
 
+    /**
+     * Indica si dos animales son iguales.
+     * @param obj otra clase
+     * @return true si los dos animale son iguales
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -154,12 +197,28 @@ public abstract class Animal {
         return "Animal{" + "codigo=" + codigo + ", fechaNacimiento=" + fechaNacimiento + ", sexo=" + sexo + ", peso=" + peso + '}';
     }
 
+    /**
+     * Función que indica el sonido que hace el animal
+     * @return String con el sonido
+     */
     public abstract String hacerSonido();
 
+    /**
+     * Función que indica que el animal se alegra
+     * @return String indicando que hace cuando se alegra
+     */
     public abstract String alegrarse();
 
+    /**
+     * Función que indica que el animal se enfada
+     * @return String indicando lo que hace cuando se enfada
+     */
     public abstract String enfadarse();
 
+    /**
+     * Función que devuelve el tipo de animal que es
+     * @return String diciendo que animal es (gato, perro,etc)
+     */
     public abstract String queSoy();
 
 }
